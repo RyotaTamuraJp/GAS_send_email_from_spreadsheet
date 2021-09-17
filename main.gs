@@ -17,11 +17,14 @@ function sendEmail() {
     const to = mySheet.getRange(i,3).getValue();
     const emailTextBody = `${company}\n${name}\n${emailBodyTemplate}`;
 
-    var templateEmail = HtmlService.createTemplateFromFile('emailContents');
+    var templateEmail = HtmlService.createTemplateFromFile('contents');
     templateEmail.params = [company, name];
     html = templateEmail.evaluate().getContent();
     options['htmlBody'] = html
 
     GmailApp.sendEmail(to, subject, emailTextBody, options);
+
+    const remaining = MailApp.getRemainingDailyQuota();
+    console.log(`i=${i}: Sent to "${toEmail}". The remaining ${remaining} can be sent today.`)
   }
 }
