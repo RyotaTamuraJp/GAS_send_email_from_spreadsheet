@@ -25,6 +25,6 @@ function sendEmail() {
     GmailApp.sendEmail(to, subject, emailTextBody, options);
 
     const remaining = MailApp.getRemainingDailyQuota();
-    console.log(`i=${i}: Sent to "${toEmail}". The remaining ${remaining} can be sent today.`)
+    console.log(`i=${i}: Sent to "${to}". The remaining ${remaining} can be sent today.`)
   }
 }
